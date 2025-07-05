@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $stmt = $conn->prepare("UPDATE mata_praktikum SET kode_praktikum = ?, nama = ?, deskripsi = ? WHERE id = ?");
         $stmt->bind_param("sssi", $kode_praktikum, $nama, $deskripsi, $id);
-        
+
         if ($stmt->execute()) {
             header("Location: manajemen_praktikum.php?status=edit_sukses");
             exit();
@@ -53,34 +53,22 @@ $activePage = 'manajemen_praktikum';
 require_once 'templates/header.php';
 ?>
 
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <a href="manajemen_praktikum.php" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6">
-        &larr; Kembali ke Daftar Praktikum
+<div class="bg-gray-800 p-8 rounded-xl shadow-2xl text-gray-100 border border-gray-700 max-w-2xl mx-auto"> <a href="manajemen_praktikum.php" class="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors duration-200"> &larr; Kembali ke Daftar Praktikum
     </a>
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">Form Edit Mata Praktikum</h2>
-
-    <?php if (!empty($error)): ?>
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-            <span><?php echo htmlspecialchars($error); ?></span>
+    <h2 class="text-3xl font-bold text-gray-50 mb-6 border-b pb-3 border-gray-700">Form Edit Mata Praktikum</h2> <?php if (!empty($error)): ?>
+        <div class="bg-red-800 border border-red-600 text-red-100 px-4 py-3 rounded relative mb-6 text-lg font-medium" role="alert"> <span><?php echo htmlspecialchars($error); ?></span>
         </div>
     <?php endif; ?>
 
     <form action="praktikum_edit.php?id=<?php echo $id; ?>" method="POST">
         <div class="mb-4">
-            <label for="kode_praktikum" class="block text-gray-700 text-sm font-bold mb-2">Kode Praktikum</label>
-            <input type="text" id="kode_praktikum" name="kode_praktikum" value="<?php echo htmlspecialchars($praktikum['kode_praktikum']); ?>" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" required>
-        </div>
+            <label for="kode_praktikum" class="block text-gray-300 text-sm font-semibold mb-2">Kode Praktikum</label> <input type="text" id="kode_praktikum" name="kode_praktikum" value="<?php echo htmlspecialchars($praktikum['kode_praktikum']); ?>" class="shadow-sm appearance-none border border-gray-600 rounded w-full py-2.5 px-3 bg-gray-900 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-500 transition-colors duration-200" required> </div>
         <div class="mb-4">
-            <label for="nama" class="block text-gray-700 text-sm font-bold mb-2">Nama Praktikum</label>
-            <input type="text" id="nama" name="nama" value="<?php echo htmlspecialchars($praktikum['nama']); ?>" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" required>
-        </div>
+            <label for="nama" class="block text-gray-300 text-sm font-semibold mb-2">Nama Praktikum</label> <input type="text" id="nama" name="nama" value="<?php echo htmlspecialchars($praktikum['nama']); ?>" class="shadow-sm appearance-none border border-gray-600 rounded w-full py-2.5 px-3 bg-gray-900 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-500 transition-colors duration-200" required> </div>
         <div class="mb-6">
-            <label for="deskripsi" class="block text-gray-700 text-sm font-bold mb-2">Deskripsi</label>
-            <textarea id="deskripsi" name="deskripsi" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"><?php echo htmlspecialchars($praktikum['deskripsi']); ?></textarea>
-        </div>
+            <label for="deskripsi" class="block text-gray-300 text-sm font-semibold mb-2">Deskripsi</label> <textarea id="deskripsi" name="deskripsi" rows="4" class="shadow-sm appearance-none border border-gray-600 rounded w-full py-2.5 px-3 bg-gray-900 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-500 transition-colors duration-200"><?php echo htmlspecialchars($praktikum['deskripsi']); ?></textarea> </div>
         <div class="flex items-center justify-end">
-            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Simpan Perubahan
+            <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2.5 px-5 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-300 transform hover:scale-105"> Simpan Perubahan
             </button>
         </div>
     </form>

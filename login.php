@@ -67,96 +67,105 @@ $conn->close();
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap'); /* Menggunakan font Poppins dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap'); /* Menggunakan font Poppins, tambahkan 700 */
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #6DD5FA, #2980B9); /* Gradient background */
+            background: linear-gradient(135deg, #1A202C, #2D3748); /* Gradient background gelap yang elegan */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: #333;
+            color: #E2E8F0; /* Warna teks default terang */
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan */
-            padding: 35px 45px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Shadow lebih menonjol */
-            width: 350px;
+            background-color: rgba(30, 41, 59, 0.9); /* Sedikit transparan dan lebih gelap */
+            padding: 40px 50px; /* Padding lebih besar */
+            border-radius: 15px; /* Border radius lebih besar */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4); /* Shadow lebih menonjol dan gelap */
+            width: 400px; /* Lebar container lebih besar */
             text-align: center;
-            backdrop-filter: blur(5px); /* Efek blur pada background container */
+            backdrop-filter: blur(8px); /* Efek blur lebih kuat */
+            border: 1px solid rgba(74, 85, 104, 0.5); /* Border tipis untuk definisi */
         }
         h2 {
             text-align: center;
-            color: #2980B9; /* Warna biru gelap */
-            margin-bottom: 25px;
-            font-weight: 600; /* Lebih tebal */
+            color: #63B3ED; /* Warna biru cerah yang kontras */
+            margin-bottom: 30px; /* Margin bawah lebih besar */
+            font-weight: 700; /* Lebih tebal */
+            font-size: 2.2em; /* Ukuran font lebih besar */
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Margin bawah lebih besar */
             text-align: left;
         }
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 400;
+            margin-bottom: 10px; /* Margin bawah lebih besar */
+            color: #A0AEC0; /* Warna abu-abu terang untuk label */
+            font-weight: 500; /* Sedikit lebih tebal */
+            font-size: 1.1em; /* Ukuran font label lebih besar */
         }
         .form-group input {
-            width: calc(100% - 20px); /* Menyesuaikan padding */
-            padding: 12px 10px;
-            border: 1px solid #cce7ff; /* Border lebih soft */
-            border-radius: 6px;
+            width: calc(100% - 24px); /* Menyesuaikan padding */
+            padding: 14px 12px; /* Padding lebih besar */
+            border: 1px solid #4A5568; /* Border gelap */
+            border-radius: 8px; /* Border radius lebih besar */
             box-sizing: border-box;
-            font-size: 1em;
-            transition: border-color 0.3s ease;
+            font-size: 1.05em; /* Ukuran font input lebih besar */
+            background-color: #2D3748; /* Background input gelap */
+            color: #E2E8F0; /* Teks input terang */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .form-group input:focus {
-            border-color: #2980B9; /* Border berubah saat fokus */
+            border-color: #63B3ED; /* Border berubah saat fokus (biru cerah) */
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.5); /* Shadow pada fokus */
             outline: none;
         }
         .btn {
-            background-color: #2980B9;
+            background-color: #4299E1; /* Biru yang kuat */
             color: white;
-            padding: 12px;
+            padding: 15px; /* Padding lebih besar */
             border: none;
-            border-radius: 6px;
+            border-radius: 8px; /* Border radius lebih besar */
             cursor: pointer;
             width: 100%;
-            font-size: 1.1em;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
+            font-size: 1.2em; /* Ukuran font tombol lebih besar */
+            font-weight: 700; /* Lebih tebal */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 20px; /* Margin atas lebih besar */
+            letter-spacing: 0.05em; /* Spasi antar huruf */
         }
         .btn:hover {
-            background-color: #1a5276; /* Warna lebih gelap saat hover */
-            transform: translateY(-2px); /* Sedikit naik saat hover */
+            background-color: #3182CE; /* Warna lebih gelap saat hover */
+            transform: translateY(-3px); /* Sedikit naik saat hover */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3); /* Shadow saat hover */
         }
         .message {
-            color: #d9534f; /* Merah untuk error */
+            color: #FC8181; /* Merah terang untuk error */
             text-align: center;
             margin-bottom: 20px;
-            font-size: 0.9em;
+            font-size: 1em;
+            font-weight: 600;
         }
         .message.success {
-            color: #5cb85c; /* Hijau untuk sukses */
+            color: #68D391; /* Hijau terang untuk sukses */
         }
         .register-link {
             text-align: center;
-            margin-top: 25px;
-            font-size: 0.9em;
-            color: #777;
+            margin-top: 30px; /* Margin atas lebih besar */
+            font-size: 1em;
+            color: #A0AEC0; /* Warna abu-abu terang */
         }
         .register-link a {
-            color: #2980B9;
+            color: #63B3ED; /* Biru cerah untuk link */
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
         }
         .register-link a:hover {
-            color: #1a5276;
+            color: #4299E1; /* Biru yang lebih kuat saat hover */
             text-decoration: underline;
         }
     </style>

@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'asisten') {
 
 $id_praktikum = $_GET['id_praktikum'] ?? null;
 if (!$id_praktikum) {
-    echo "ID Praktikum tidak valid.";
+    echo "<div class='text-red-400 text-center text-xl mt-10'>ID Praktikum tidak valid.</div>";
     exit;
 }
 
@@ -63,34 +63,22 @@ $activePage = 'manajemen_praktikum';
 require_once 'templates/header.php';
 ?>
 
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <a href="modul.php?id_praktikum=<?php echo $id_praktikum; ?>" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6">
-        &larr; Kembali ke Daftar Modul
+<div class="bg-gray-800 p-8 rounded-xl shadow-2xl text-gray-100 border border-gray-700 max-w-2xl mx-auto"> <a href="modul.php?id_praktikum=<?php echo $id_praktikum; ?>" class="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors duration-200"> &larr; Kembali ke Daftar Modul
     </a>
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">Form Tambah Modul Baru</h2>
-
-    <?php if (!empty($error)): ?>
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-            <span><?php echo htmlspecialchars($error); ?></span>
+    <h2 class="text-3xl font-bold text-gray-50 mb-6 border-b pb-3 border-gray-700">Form Tambah Modul Baru</h2> <?php if (!empty($error)): ?>
+        <div class="bg-red-800 border border-red-600 text-red-100 px-4 py-3 rounded relative mb-6 text-lg font-medium" role="alert"> <span><?php echo htmlspecialchars($error); ?></span>
         </div>
     <?php endif; ?>
 
     <form action="modul_tambah.php?id_praktikum=<?php echo $id_praktikum; ?>" method="POST" enctype="multipart/form-data">
         <div class="mb-4">
-            <label for="nama_modul" class="block text-gray-700 text-sm font-bold mb-2">Nama Modul</label>
-            <input type="text" id="nama_modul" name="nama_modul" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" required>
-        </div>
+            <label for="nama_modul" class="block text-gray-300 text-sm font-semibold mb-2">Nama Modul</label> <input type="text" id="nama_modul" name="nama_modul" class="shadow-sm appearance-none border border-gray-600 rounded w-full py-2.5 px-3 bg-gray-900 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-500 transition-colors duration-200" required> </div>
         <div class="mb-4">
-            <label for="deskripsi" class="block text-gray-700 text-sm font-bold mb-2">Deskripsi Singkat</label>
-            <textarea id="deskripsi" name="deskripsi" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"></textarea>
-        </div>
+            <label for="deskripsi" class="block text-gray-300 text-sm font-semibold mb-2">Deskripsi Singkat</label> <textarea id="deskripsi" name="deskripsi" rows="3" class="shadow-sm appearance-none border border-gray-600 rounded w-full py-2.5 px-3 bg-gray-900 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-500 transition-colors duration-200"></textarea> </div>
         <div class="mb-6">
-            <label for="file_materi" class="block text-gray-700 text-sm font-bold mb-2">File Materi (PDF/DOCX, maks 5MB)</label>
-            <input type="file" id="file_materi" name="file_materi" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-        </div>
+            <label for="file_materi" class="block text-gray-300 text-sm font-semibold mb-2">File Materi (PDF/DOCX, maks 5MB)</label> <input type="file" id="file_materi" name="file_materi" class="block w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-800 file:text-blue-100 hover:file:bg-blue-700 transition-colors duration-200"> </div>
         <div class="flex items-center justify-end">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                Simpan Modul
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-5 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-300 transform hover:scale-105"> Simpan Modul
             </button>
         </div>
     </form>
